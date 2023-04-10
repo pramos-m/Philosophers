@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/07 21:48:27 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/10 12:26:57 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,16 +32,22 @@ LIB_DIR = ./lib/
 
 OBJ_DIR = ./.obj/
 
+LIBFT_DIR = $(LIB_DIR)libft/
+
+PRINT_DIR = $(LIB_DIR)printf/
+
+LIBRARY = $(LIB_DIR)/*/*.a
+
 #----------------PHILO-----------------#
 
 INCLUDE = -I$(INC_DIR) -I$(LIB_DIR) -I$(PRINT_DIR) -Ibonus/inc/
 
 SRC_FLS = philosophers.c \
-			.c \
-			.C \
-			.c 
+			# .c \
+			# .C \
+			# .c 
 
-UTL_FLS = philo_utils.c
+# UTL_FLS = philo_utils.c
 
 SRCS += $(addprefix $(SRC_DIR), $(SRC_FLS))
 SRCS += $(addprefix $(UTILS), $(UTL_FLS))
@@ -50,3 +56,31 @@ OBJS = $(addprefix $(OBJ_DIR), $(SRCS:%.c=%.o))
 DEPS = $(OBJS:%.o=%.d)
 
 #------------------RULES-------------------#
+
+$(OBJ_DIR)%.o: %.c $(LIBRARY)
+	$(MD) $(dir $@)
+
+all:
+	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) $(NAME)
+
+$(NAME):: $(OBJS)
+	$(CC) $(CFLAGS) -MMD $(OBJS) $(LIBRARY) -o philosophers
+
+$(NAME)::
+	@echo "nothing to be done philosophers"
+
+clean:
+	@$(MAKE) clean -C $(LIB_DIR)
+	@$(RM) -rf $(OBJ_DIR)
+	@echo "clean done"
+
+fclean:
+	@$(MAKE) fclean -C $(LIB_DIR)
+	@$(RM) $(NAME)
+	@$(RM) -rf $(OBJ_DIR)
+	@echo "fclean done"
+
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
