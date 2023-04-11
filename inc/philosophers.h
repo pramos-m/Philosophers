@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/10 16:57:22 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:11:47 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include<fcntl.h>
 # include<pthread.h>
 # include<sys/time.h>
+
+
+# define ERRCODE0	(int)0
+
+// Error Messages
+# define ERR_MSG0	(char *)"Error!\n"
 
 typedef struct s_philo
 {

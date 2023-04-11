@@ -60,7 +60,9 @@ int	main(int argc, char **argv)
 			return (0);
 		i++;
 	}
+	init_mutex(&table);
 	if (start_simulation(table) != 0)
 		return (-1);
+	start_philo(table);
 	return (0);
 }
