@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 12:51:30 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:35:57 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,14 @@ void init_mutex(t_list *table)
 	}
 }
 
-void start_simulation(t_list *table)
+void init_table(t_list *table)
 {
-    // int tmp;
-
     table->philo = ft_calloc(table->num_philos, sizeof(t_philo));
 	if (!table->philo)
 		ft_error_handler(ERRCODE2, NULL);
     table->forks = ft_calloc(table->num_philos, sizeof(pthread_mutex_t));
 	if (!table->forks)
 		ft_error_handler(ERRCODE2, NULL);
-    // tmp = 0;
-    // while (table->philo && tmp < table->num_philos)
-    // {
-    //     if (table->)
-    //     table->philo[table->num_philos].num_eats = 0;
-    //     table->philo[table->num_philos].last_eat = 0;
-    //     table->philo[table->num_philos].fork_l
-	// 		= table->forks[table->num_philos - 1];
-    //     table->philo[table->num_philos].fork_r
-	// 		= table->forks[table->num_philos - 2];
-    // }
-    
 }
 
 void	init_philo(t_list *table, t_philo *philo)

@@ -6,13 +6,11 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:49:55 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 13:00:03 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:33:20 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void	ft_error_handler(int error, char *strerror)
 {

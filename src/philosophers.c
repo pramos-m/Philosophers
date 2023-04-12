@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pramos-m <pramos-m@stutableent.42.fr>          +#+  +:+       +#+        */
+/*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Createtable: 2023/04/07 21:48:35 by pramos-m          #+#    #+#             */
-/*   Uptableatetable: 2023/04/10 12:25:53 by pramos-m         ###   ########.fr       */
+/*   Created: 2023/04/12 14:59:24 by pramos-m          #+#    #+#             */
+/*   Updated: 2023/04/12 15:10:30 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 	while (++i != argc)
 		if (check_num_arg(argv[i], i, table) < 0)
 			return (0);
+	init_table(table);
 	init_mutex(table);
 	start_simulation(table);
 	// start_philo(table);

@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 13:00:00 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:35:38 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include<fcntl.h>
 # include<pthread.h>
 # include<sys/time.h>
-
 
 # define ERRCODE0	(int)0
 # define ERRCODE1	(int)1
@@ -67,6 +66,7 @@ typedef struct s_list
 	long			s_time;
 }	t_list;
 
+void		init_table(t_list *table);
 void		init_mutex(t_list *table);
 void		start_simulation(t_list *table);
 void		ft_error_handler(int error, char *strerror);
