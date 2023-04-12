@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/11 15:11:47 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:00:00 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,24 @@
 
 
 # define ERRCODE0	(int)0
+# define ERRCODE1	(int)1
+# define ERRCODE2	(int)2
+# define ERRCODE3	(int)3
+# define ERRCODE4	(int)4
 
 // Error Messages
-# define ERR_MSG0	(char *)"Error!\n"
+# define ERRMSG0	(char *)": Invalid number of arguments!\n"
+# define ERRMSG1	(char *)": Arguments given are invalid!\n"
+# define ERRMSG2	(char *)": There was an error while allocating memory!\n"
+# define ERRMSG3	(char *)": There was an error while creating a mutex!\n"
+# define ERRMSG4	(char *)": There was an error while destroying a mutex!\n"
 
 typedef struct s_philo
 {
 	int							num_eats;
 	long						last_eat;
-	pthread_mutex_t				fork_l;
-	pthread_mutex_t				fork_r;
+	pthread_mutex_t				*fork_l;
+	pthread_mutex_t				*fork_r;
 	struct s_list				*d;
 }	t_philo;
 
@@ -59,4 +67,11 @@ typedef struct s_list
 	long			s_time;
 }	t_list;
 
+void		init_mutex(t_list *table);
+void		start_simulation(t_list *table);
+void		ft_error_handler(int error, char *strerror);
+int			ft_atoi(const char	*str);
+void		*ft_calloc(size_t count, size_t size);
+int			ft_isdigit(int c);
+size_t		ft_strlen(const	char	*s);
 #endif

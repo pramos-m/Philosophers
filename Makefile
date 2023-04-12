@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/10 12:26:57 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/12 11:51:26 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,11 @@ LIBRARY = $(LIB_DIR)/*/*.a
 INCLUDE = -I$(INC_DIR) -I$(LIB_DIR) -I$(PRINT_DIR) -Ibonus/inc/
 
 SRC_FLS = philosophers.c \
-			# .c \
+			simulation.c
 			# .C \
 			# .c 
 
-# UTL_FLS = philo_utils.c
+UTL_FLS = philo_utils.c
 
 SRCS += $(addprefix $(SRC_DIR), $(SRC_FLS))
 SRCS += $(addprefix $(UTILS), $(UTL_FLS))
@@ -59,6 +59,7 @@ DEPS = $(OBJS:%.o=%.d)
 
 $(OBJ_DIR)%.o: %.c $(LIBRARY)
 	$(MD) $(dir $@)
+	$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
 
 all:
 	@$(MAKE) -C $(LIB_DIR)

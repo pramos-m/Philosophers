@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#inclutablee "philosophers.h"
+#include "philosophers.h"
 
-static int	check_num_arg(char *num_arg, int pos, t_list *table)
+int	check_num_arg(char *num_arg, int pos, t_list *table)
 {
 	int	n;
 
@@ -20,7 +20,7 @@ static int	check_num_arg(char *num_arg, int pos, t_list *table)
 	if (!n || n < 0 || (pos == 1 && n > 200) || (pos == 2 && n < 60)
 		|| (pos == 3 && n < 60) || (pos == 4 && n < 60))
 	{
-		free(table);
+		ft_error_handler(0, "eliminame");
 		write(1, "Numero incorrecto.\n", 20);
 		return (-1);
 	}
@@ -29,7 +29,7 @@ static int	check_num_arg(char *num_arg, int pos, t_list *table)
 		if (pos == 1)
 			table->num_philos = n;
 		if (pos == 2)
-			table->time_tableie = n;
+			table->time_die = n;
 		if (pos == 3)
 			table->time_eat = n;
 		if (pos == 4)
@@ -46,23 +46,17 @@ int	main(int argc, char **argv)
 	t_list	*table;
 
 	if (argc != 5 && argc != 6)
-	{
-		write(1, "Numero tablee argumentos no valitableo.\n", 33);
-		return (0);
-	}
-	i = 1;
+		ft_error_handler(0, "Numero de argumentos no valido.\n");
+	i = 0;
 	table = malloc(sizeof(t_list));
 	if (!table)
 		return (0);
-	while (i != argc)
-	{
+	check_num_arg(argv[i], 0, table);
+	while (++i != argc)
 		if (check_num_arg(argv[i], i, table) < 0)
 			return (0);
-		i++;
-	}
-	init_mutex(&table);
-	if (start_simulation(table) != 0)
-		return (-1);
-	start_philo(table);
+	init_mutex(table);
+	start_simulation(table);
+	// start_philo(table);
 	return (0);
 }
