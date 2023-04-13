@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:30:47 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 17:42:07 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:47:27 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,4 @@ int clean_pthread(t_list *table, pthread_t *tid)
 		    ft_error_handler(ERRCODE4, NULL);
 	}
     return (1);
-}
-
-void	delete(void **dlt)
-{
-	free(*dlt);
-	*dlt = NULL;
 }

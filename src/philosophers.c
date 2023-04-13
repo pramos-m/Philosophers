@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:59:24 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 15:10:30 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:49:12 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ int	main(int argc, char **argv)
 	init_table(table);
 	init_mutex(table);
 	start_simulation(table);
-	// start_philo(table);
 	return (0);
 }

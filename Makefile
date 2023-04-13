@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/12 17:35:11 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/13 15:04:28 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ all:
 	@$(MAKE) $(NAME)
 
 $(NAME):: $(OBJS)
-	$(CC) $(CFLAGS) -MMD $(OBJS) $(LIBRARY) -o philosophers
+	$(CC) $(CFLAGS) -MMD $(OBJS) $(LIBRARY) -o philo
 
 $(NAME)::
 	@echo "nothing to be done philosophers"
