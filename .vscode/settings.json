@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "philosophers.h": "c"
+        "philosophers.h": "c",
+        "__threading_support": "c",
+        "memory": "c",
+        "philosophers_utils.h": "c"
     }
 }

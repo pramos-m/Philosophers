@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/12 17:35:38 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:20:38 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,24 @@ typedef struct s_list
 void		init_table(t_list *table);
 void		init_mutex(t_list *table);
 void		start_simulation(t_list *table);
+void		*pthread_routine(t_list *table);
 void		ft_error_handler(int error, char *strerror);
+
+
 int			ft_atoi(const char	*str);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_isdigit(int c);
 size_t		ft_strlen(const	char	*s);
+
+void	print_philo_fork(t_list *table);
+void	print_philo_eating(t_list *table);
+void	print_philo_sleeping(t_list *table);
+void	print_philo_thinking(t_list *table);
+void	print_philo_dying(t_list *table);
+void    clean_table(t_list *table)
+
+void    clean_table(t_list *table);
+int destroy_mutex(t_list *table);
+int clean_pthread(t_list *table, pthread_t *tid);
+
 #endif
