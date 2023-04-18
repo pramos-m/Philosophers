@@ -3,6 +3,8 @@
         "philosophers.h": "c",
         "__threading_support": "c",
         "memory": "c",
-        "philosophers_utils.h": "c"
+        "philosophers_utils.h": "c",
+        "ratio": "c",
+        "ostream": "c"
     }
 }
