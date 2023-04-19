@@ -6,33 +6,11 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:49:55 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/18 20:16:09 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:58:08 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	ft_error_handler(int error, char *strerror)
-{
-	if (!strerror && error)
-	{
-		if (error == ERRCODE0)
-			write(STDERR_FILENO, ERRMSG0, ft_strlen(ERRMSG0));
-		else if (error == ERRCODE1)
-			write(STDERR_FILENO, ERRMSG1, ft_strlen(ERRMSG1));
-		else if (error == ERRCODE2)
-			write(STDERR_FILENO, ERRMSG2, ft_strlen(ERRMSG2));
-		else if (error == ERRCODE3)
-			write(STDERR_FILENO, ERRMSG3, ft_strlen(ERRMSG3));
-		else if (error == ERRCODE4)
-			write(STDERR_FILENO, ERRMSG4, ft_strlen(ERRMSG4));
-	}
-	else if ((!error) && (strerror))
-		write(STDERR_FILENO, strerror, ft_strlen(strerror));
-	else if ((!error) && (!strerror))
-		perror("Error! ");
-	exit(EXIT_FAILURE);
-}
 
 int	ft_atoi(const char	*str)
 {
@@ -58,6 +36,7 @@ int	ft_atoi(const char	*str)
 	}
 	return (res * sign);
 }
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	char	*ptr;

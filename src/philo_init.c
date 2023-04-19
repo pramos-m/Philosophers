@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/18 20:39:32 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:10:12 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,33 @@ t_times	init_times(char **av, t_list *table)
 	return (times);
 }
 
-// void init_mutex(t_list *table)
-// {
-// 	ssize_t	idx;
+void	init_mutex(t_list *table)
+{
+	ssize_t	idx;
 
-//     idx = -1;
-// 	while (++idx < table->num_philos)
-// 	{
-// 		if (pthread_mutex_init(&table->forks[idx], NULL))
-// 		{
-// 			if (pthread_mutex_destroy(table->forks))
-// 				ft_error_handler(ERRCODE4, NULL);
-// 			ft_error_handler(ERRCODE3, NULL);
-// 		}
-// 	}
-// 	if (pthread_mutex_init(&table->print, NULL))
-// 	{
-// 		if (pthread_mutex_destroy(&table->print))
-// 			ft_error_handler(ERRCODE4, NULL);
-// 		ft_error_handler(ERRCODE3, NULL);
-// 	}
-// 	if (pthread_mutex_init(&table->pcreate, NULL))
-// 	{
-// 		if (pthread_mutex_destroy(&table->print))
-// 			ft_error_handler(ERRCODE4, NULL);
-// 		ft_error_handler(ERRCODE3, NULL);
-// 	}
-// }
+	idx = -1;
+	while (++idx < table->num_philos)
+	{
+		if (pthread_mutex_init(&table->forks[idx], NULL))
+		{
+			if (pthread_mutex_destroy(table->forks))
+				error_director(table, NULL, ERRCODE4, NULL);
+			error_director(table, NULL, ERRCODE10, NULL);
+		}
+	}
+	if (pthread_mutex_init(&table->print, NULL))
+	{
+		if (pthread_mutex_destroy(&table->print))
+			error_director(table, NULL, ERRCODE4, NULL);
+		error_director(table, NULL, ERRCODE10, NULL);
+	}
+	if (pthread_mutex_init(&table->pcreate, NULL))
+	{
+		if (pthread_mutex_destroy(&table->print))
+			error_director(table, NULL, ERRCODE4, NULL);
+		error_director(table, NULL, ERRCODE10, NULL);
+	}
+}
 
 void	init_table(t_list *table, t_times *time)
 {
@@ -67,16 +67,16 @@ void	init_table(t_list *table, t_times *time)
 		ft_error_handler(ERRCODE2, NULL);
 }
 
-// void	init_philo(t_list *table, t_philo *philo)
-// {
-// 	++table->num_philos;
-// 	philo->num_eats = 0;
-// 	philo->last_eat = 0;
-// 	if (table->num_philos == 1)
-// 		philo->fork_l = &table->forks[table->num_philos - 1];
-// 	else
-// 		philo->fork_l = &table->forks[table->num_philos - 2];
-// 	philo->fork_r = &table->forks[table->num_philos - 1];
-// 	if (pthread_mutex_unlock(&table->print))
-// 		ft_error_handler(ERRCODE3, NULL);
-// }
+void	init_philo(t_list *table, t_philo *philo)
+{
+	++table->num_philos;
+	philo->num_eats = 0;
+	philo->last_eat = 0;
+	if (table->num_philos == 1)
+		philo->fork_l = &table->forks[table->num_philos - 1];
+	else
+		philo->fork_l = &table->forks[table->num_philos - 2];
+	philo->fork_r = &table->forks[table->num_philos - 1];
+	if (pthread_mutex_unlock(&table->print))
+		error_director(table, table->tid, ERRCODE10, NULL);
+}

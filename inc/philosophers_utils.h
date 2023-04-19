@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/18 17:49:43 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:22:05 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@
 // void	print_philo_sleeping(t_table *table);
 // void	print_philo_thinking(t_table *table);
 // void	print_philo_dying(t_table *table);
-void    clean_table(t_list *table);
-void    delete(void **dlt);
-int     destroy_mutex(t_list *table);
-int     clean_pthread(t_list *table, pthread_t *tid);
+void	clean_table(t_list *table);
+void	delete(void **dlt);
+int		destroy_mutex(t_list *table);
+int		clean_pthread(t_list *table, pthread_t *tid);
 
 #endif

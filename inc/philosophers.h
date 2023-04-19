@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/18 20:38:18 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:20:50 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,21 @@
 # define ERRCODE2	(int)2
 # define ERRCODE3	(int)3
 # define ERRCODE4	(int)4
+# define ERRCODE5	(int)5
+# define ERRCODE6	(int)6
+# define ERRCODE10	(int)10
+# define ERRCODE20	(int)20
 
 // Error Messages
 # define ERRMSG0	(char *)": Invalid number of arguments!\n"
 # define ERRMSG1	(char *)": Arguments given are invalid!\n"
 # define ERRMSG2	(char *)": There was an error while allocating memory!\n"
 # define ERRMSG3	(char *)": There was an error while creating a mutex!\n"
-# define ERRMSG4	(char *)": There was an error while destroying a mutex!\n"\
+# define ERRMSG4	(char *)": There was an error while destroying a mutex!\n"
+# define ERRMSG5	(char *)": There was an error while creating a phtread!\n"
+# define ERRMSG6	(char *)": There was an error while destroying a phtread!\n"
+# define ERRMSG10	(char *)": There was a mutex error!\n"
+# define ERRMSG20	(char *)": There was a phtread error!\n"
 
 typedef struct s_times	t_times;
 typedef struct s_philo	t_philo;
@@ -56,8 +64,7 @@ typedef struct s_times
 	long long	t_sleep;
 	long long	t_die;
 	long long	t_p_eats;
-} t_times;
-
+}	t_times;
 
 typedef struct s_philo
 {
@@ -90,6 +97,11 @@ void		init_table(t_list *table, t_times *time);
 void		init_mutex(t_list *table);
 void		start_simulation(t_list *table);
 void		*pthread_routine(t_list *table);
+
+void		error_director(t_list *table, pthread_t *tid,
+				int errcode, char *strerror);
+void		clean_table(t_list *table);
+int			clean_pthread(t_list *table, pthread_t *tid);
 void		ft_error_handler(int error, char *strerror);
 
 long long	get_time(void);
@@ -98,16 +110,16 @@ void		*ft_calloc(size_t count, size_t size);
 int			ft_isdigit(int c);
 size_t		ft_strlen(const	char	*s);
 
-void	pthread_messenger(t_list *table, t_philo *philo, int state);
-void	print_philo_fork(t_list *table);
-void	print_philo_eating(t_list *table);
-void	print_philo_sleeping(t_list *table);
-void	print_philo_thinking(t_list *table);
-void	print_philo_dying(t_list *table);
-void    clean_table(t_list *table);
+void		pthread_messenger(t_list *table, t_philo *philo, int state);
+void		print_philo_fork(t_list *table);
+void		print_philo_eating(t_list *table);
+void		print_philo_sleeping(t_list *table);
+void		print_philo_thinking(t_list *table);
+void		print_philo_dying(t_list *table);
+void		clean_table(t_list *table);
 
-void    clean_table(t_list *table);
-int		destroy_mutex(t_list *table);
-int		clean_pthread(t_list *table, pthread_t *tid);
+void		clean_table(t_list *table);
+int			destroy_mutex(t_list *table);
+int			clean_pthread(t_list *table, pthread_t *tid);
 
 #endif
