@@ -15,12 +15,10 @@
 
 void	start_simulation(t_list *table)
 {
-	pthread_t	tmp;
 	pthread_t	*tid;
 	int		count;
 
 	count = -1;
-	tmp = 0;
 	tid = ft_calloc(table->num_philos, sizeof(pthread_t));
 	if (!tid)
 		error_director(table, tid, ERRCODE2, NULL);
@@ -29,9 +27,9 @@ void	start_simulation(t_list *table)
 		error_director(table, table->tid, ERRCODE10, NULL);
 	while (++count < table->num_philos)
 	{
-		// if (pthread_create(&tid[count], NULL, (void *)pthread_routine,
-		// 		(void *)table))
-		// 	error_director(table, tid, ERRCODE20, NULL);
+		if (pthread_create(&tid[count], NULL, (void *)pthread_routine,
+				(void *)table))
+			error_director(table, tid, ERRCODE20, NULL);	
 		if (pthread_join(tid[count], NULL))
 			error_director(table, tid, ERRCODE20, NULL);
 	}
@@ -41,8 +39,14 @@ void	start_simulation(t_list *table)
 	clean_pthread(table, tid);
 }
 
-// void	*pthread_routine(t_list *table)
-// {}
+void	*pthread_routine(t_list *table)
+{
+	t_philo *philo;
+	philo = &table->philo[table->pcntr];
+	if (pthread_mutex_lock(&table->print))
+		error_director(table, table->tid, ERRCODE10, NULL);
+	init_philo(&philo);
+}
 
 void	pthread_messenger(t_list *table, t_philo *philo, int state)
 {

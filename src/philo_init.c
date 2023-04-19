@@ -69,9 +69,11 @@ void	init_table(t_list *table, t_times *time)
 
 void	init_philo(t_list *table, t_philo *philo)
 {
-	++table->num_philos;
+	printf("gola\n");
+	++table->pcntr;
 	philo->num_eats = 0;
 	philo->last_eat = 0;
+	philo->id = table->pcntr;
 	if (table->num_philos == 1)
 		philo->fork_l = &table->forks[table->num_philos - 1];
 	else

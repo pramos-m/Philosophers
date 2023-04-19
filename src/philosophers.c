@@ -18,15 +18,20 @@ int	check_arg(int ac, char **av)
 	int	i;
 
 	i = 0;
-	num = NULL;
+	num = (int*)malloc((ac-1) * sizeof(int));
 	if (!av[1] || !av[2] || !av[3] || !av[4])
 		return (-1);
 	while (++i < ac)
 	{
 		num[i] = ft_atoi(av[i]);
 		if (num[i] < 0)
+		{
+			free(num);
 			return (-1);
+		}
 	}
+	free(num);
+	num = NULL;
 	return (0);
 }
 

@@ -32,6 +32,7 @@
 # define ERRCODE20	(int)20
 
 // Error Messages
+# define ERRMSG		(char *)"\aError"
 # define ERRMSG0	(char *)": Invalid number of arguments!\n"
 # define ERRMSG1	(char *)": Arguments given are invalid!\n"
 # define ERRMSG2	(char *)": There was an error while allocating memory!\n"
@@ -68,6 +69,7 @@ typedef struct s_times
 
 typedef struct s_philo
 {
+	int							id;
 	int							num_eats;
 	long						last_eat;
 	pthread_mutex_t				*fork_l;
@@ -78,8 +80,8 @@ typedef struct s_philo
 typedef struct s_list
 {
 	int				state;
-	int				id;
 	int				num_philos;
+	int				pcntr;
 
 	t_philo			*philo;
 	pthread_t		*thread;

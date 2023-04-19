@@ -67,6 +67,7 @@ void	ft_error_handler(int error, char *strerror)
 	{
 		if (error == ERRCODE0)
 			write(STDERR_FILENO, ERRMSG0, ft_strlen(ERRMSG0));
+		//printf(STDERR_FILENO, "%s%s", ERRMSG, ERRMSG0);
 		else if (error == ERRCODE1)
 			write(STDERR_FILENO, ERRMSG1, ft_strlen(ERRMSG1));
 		else if (error == ERRCODE2)

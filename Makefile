@@ -17,7 +17,7 @@ NAME = philosophers
 
 #----------------COMANDS-----------------#
 
-CFLAGS = -Wall -Werror -Wextra -W -O3 -Ofast
+CFLAGS = -Wall  -Wextra -W -O3 -Ofast #-Werror
 XFLAGS = -fsanitize=address -g3
 RM = rm -rf
 MD = mkdir -p
