@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/19 12:45:00 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:32:14 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,22 @@ void	start_simulation(t_list *table)
 	// do_sleep_cycle(table->pnbr * 2);
 	if (pthread_mutex_unlock(&table->pcreate))
 		error_director(table, table->tid, ERRCODE10, NULL);
-	clean_pthread(table, tid);
+	// clean_pthread(table, tid);
 }
 
 void	*pthread_routine(t_list *table)
 {
-	t_philo *philo;
+	t_philo	*philo;
+
 	philo = &table->philo[table->pcntr];
 	if (pthread_mutex_lock(&table->print))
 		error_director(table, table->tid, ERRCODE10, NULL);
-	init_philo(&philo);
+	init_philo(table, philo);
 }
 
 void	pthread_messenger(t_list *table, t_philo *philo, int state)
 {
 	(void) *philo;
-
 	if (pthread_mutex_lock(&table->print))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	if (state == SEAT)
