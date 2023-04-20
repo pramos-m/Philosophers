@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/19 12:34:27 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/20 12:22:47 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = philosophers
 
 #----------------COMANDS-----------------#
 
-CFLAGS = -Wall  -Wextra -W -O3 -Ofast #-Werror
+CFLAGS = -Wall -Werror -Wextra -W -O3 -Ofast
 XFLAGS = -fsanitize=address -g3
 RM = rm -rf
 MD = mkdir -p

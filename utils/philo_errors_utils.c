@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:30:47 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 10:44:13 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:24:47 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_error_handler(int error, char *strerror)
 	{
 		if (error == ERRCODE0)
 			write(STDERR_FILENO, ERRMSG0, ft_strlen(ERRMSG0));
-		//printf(STDERR_FILENO, "%s%s", ERRMSG, ERRMSG0);
 		else if (error == ERRCODE1)
 			write(STDERR_FILENO, ERRMSG1, ft_strlen(ERRMSG1));
 		else if (error == ERRCODE2)
@@ -76,6 +75,14 @@ void	ft_error_handler(int error, char *strerror)
 			write(STDERR_FILENO, ERRMSG3, ft_strlen(ERRMSG3));
 		else if (error == ERRCODE4)
 			write(STDERR_FILENO, ERRMSG4, ft_strlen(ERRMSG4));
+		else if (error == ERRCODE5)
+			write(STDERR_FILENO, ERRMSG5, ft_strlen(ERRMSG5));
+		else if (error == ERRCODE6)
+			write(STDERR_FILENO, ERRMSG6, ft_strlen(ERRMSG6));
+		else if (error == ERRCODE10)
+			write(STDERR_FILENO, ERRMSG10, ft_strlen(ERRMSG10));
+		else if (error == ERRCODE20)
+			write(STDERR_FILENO, ERRMSG20, ft_strlen(ERRMSG20));
 	}
 	else if ((!error) && (strerror))
 		write(STDERR_FILENO, strerror, ft_strlen(strerror));

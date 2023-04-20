@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 08:49:24 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:24:25 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void		init_table(t_list *table, t_times *time);
 void		init_mutex(t_list *table);
 void		init_philo(t_list *table, t_philo *philo);
 void		start_simulation(t_list *table);
-void		*pthread_routine(t_list *table);
+void		pthread_routine(t_list *table);
 
 void		error_director(t_list *table, pthread_t *tid,
 				int errcode, char *strerror);
