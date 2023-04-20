@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 13:34:29 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:02:41 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,46 +30,47 @@ void	start_simulation(t_list *table)
 		if (pthread_create(&tid[count], NULL, (void *)pthread_routine,
 				(void *)table))
 			error_director(table, tid, ERRCODE20, NULL);	
-		if (pthread_join(tid[count], NULL))
-			error_director(table, tid, ERRCODE20, NULL);
 	}
 	if (pthread_mutex_unlock(&table->pcreate))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	table->times->t_start = get_time();
-	// printf("%lld", table->times->t_start);
-	// iteration();
+	// iteration(itera comprovando que no muera nadie.);
+	count = -1;
+	while (++count < table->num_philos)
+	{
+		if (pthread_join(tid[count], NULL))
+			error_director(table, tid, ERRCODE20, NULL);
+	}
 	// clean_pthread(table, tid);
-	
 }
 
 void	pthread_routine(t_list *table)
 {
 	t_philo	*philo;
 
-	// if (pthread_mutex_lock(&table->pcreate))
-	// 	error_director(table, table->tid, ERRCODE10, NULL);
-	// if (pthread_mutex_unlock(&table->pcreate))
-	// 	error_director(table, table->tid, ERRCODE10, NULL);
-	printf("philo\n");
+	if (pthread_mutex_lock(&table->pcreate))
+		error_director(table, table->tid, ERRCODE10, NULL);
+	if (pthread_mutex_unlock(&table->pcreate))
+		error_director(table, table->tid, ERRCODE10, NULL);
 	philo = &table->philo[table->pcntr];
 	if (pthread_mutex_lock(&table->print))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	init_philo(table, philo);
-	// if (philo->id % 2)
-	// 	do_sleep_cycle(table->times->t_sleep);
-
-	// while (!table->pcntr)
-	// {
-	// 	if (pthread_mutex_lock(&philo->fork_l))
-	// 		error_director(table, table->tid, ERRCODE10, NULL);
-	// 	if (pthread_mutex_lock(&philo->fork_r))
-	// 		error_director(table, table->tid, ERRCODE10, NULL);
-	// 	if (check_eating(table, philo))
-	// 		return ;
-	// 	pthread_messenger(table, philo, SSLP);
-	// 	do_sleep_cycle(table->times->t_sleep);
-	// 	pthread_messenger(table, philo, STHK);
-	// }
+	if (!(philo->id % 2))
+		do_sleep_cycle(table->times->t_sleep);
+	while (!table->die)
+	{
+		if (pthread_mutex_lock(philo->fork_l))
+			error_director(table, table->tid, ERRCODE10, NULL);
+		if (pthread_mutex_lock(philo->fork_r))
+			error_director(table, table->tid, ERRCODE10, NULL);
+		pthread_messenger(table, philo, SFRK);
+		// if (check_eating(table, philo))
+		// 	return ;
+		pthread_messenger(table, philo, SSLP);
+		do_sleep_cycle(table->times->t_sleep);
+		// pthread_messenger(table, philo, STHK);
+	}
 }
 
 void	pthread_messenger(t_list *table, t_philo *philo, int state)
@@ -77,6 +78,9 @@ void	pthread_messenger(t_list *table, t_philo *philo, int state)
 	(void) *philo;
 	if (pthread_mutex_lock(&table->print))
 		error_director(table, table->tid, ERRCODE10, NULL);
+	printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s",
+		BKGDRED, (get_time() - table->times->t_start), ENDCLR, WHITE, ENDCLR,
+		BKGDCYAN, philo->id, ENDCLR, WHITE, ENDCLR);
 	if (state == SEAT)
 		print_philo_eating(table);
 	else if (state == SFRK)

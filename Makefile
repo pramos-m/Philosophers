@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/20 12:22:47 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/20 17:53:59 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,12 @@ INCLUDE = -I$(INC_DIR) -Ibonus/inc/
 
 SRC_FLS = philosophers.c \
 			philo_init.c \
-			philo_simulation.c
+			philo_simulation.c \
 
 UTL_FLS = philo_utils.c \
 			philo_print_utils.c \
-			philo_errors_utils.c
+			philo_errors_utils.c \
+			philo_simu_utils.c 
 
 SRCS += $(addprefix $(SRC_DIR), $(SRC_FLS))
 SRCS += $(addprefix $(UTILS), $(UTL_FLS))

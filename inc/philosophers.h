@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 12:24:25 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:01:49 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_list
 	int				state;
 	int				num_philos;
 	int				pcntr;
+	int				die;
 
 	t_philo			*philo;
 	pthread_t		*thread;
@@ -113,12 +114,13 @@ void		*ft_calloc(size_t count, size_t size);
 int			ft_isdigit(int c);
 size_t		ft_strlen(const	char	*s);
 
+void		do_sleep_cycle(long long time);
 void		pthread_messenger(t_list *table, t_philo *philo, int state);
-void		print_philo_fork(t_list *table);
-void		print_philo_eating(t_list *table);
-void		print_philo_sleeping(t_list *table);
-void		print_philo_thinking(t_list *table);
-void		print_philo_dying(t_list *table);
+// void		print_philo_fork(t_list *table);
+// void		print_philo_eating(t_list *table);
+// void		print_philo_sleeping(t_list *table);
+// void		print_philo_thinking(t_list *table);
+// void		print_philo_dying(t_list *table);
 void		clean_table(t_list *table);
 
 void		clean_table(t_list *table);

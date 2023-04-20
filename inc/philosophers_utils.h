@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/19 12:22:05 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:02:10 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@
 # define STHK	(int)4
 
 //	Philosophers Messages
-// void	print_philo_fork(t_table *table);
-// void	print_philo_eating(t_table *table);
-// void	print_philo_sleeping(t_table *table);
-// void	print_philo_thinking(t_table *table);
-// void	print_philo_dying(t_table *table);
+void	print_philo_fork(t_list *table);
+void	print_philo_eating(t_list *table);
+void	print_philo_sleeping(t_list *table);
+void	print_philo_thinking(t_list *table);
+void	print_philo_dying(t_list *table);
 void	clean_table(t_list *table);
 void	delete(void **dlt);
 int		destroy_mutex(t_list *table);
