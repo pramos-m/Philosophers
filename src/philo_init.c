@@ -6,11 +6,13 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 16:33:37 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:28:54 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include "philosophers_utils.h"
+
 
 t_times	init_times(char **av, t_list *table)
 {

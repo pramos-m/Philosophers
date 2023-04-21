@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:53:08 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 17:29:34 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:12:11 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	philo_check_iterator(t_list *table)
 		}
 	}
 }
+
 
 int	check_eating(t_list *table, t_philo *philo)
 {

@@ -6,11 +6,12 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:49:55 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 17:53:25 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:13:03 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include "philosophers_utils.h"
 
 int	ft_atoi(const char	*str)
 {

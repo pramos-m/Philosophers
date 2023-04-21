@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 17:31:49 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:33:35 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ void	start_simulation(t_list *table)
 	table->times->t_start = get_time();
 	if (pthread_mutex_unlock(&table->pcreate))
 		error_director(table, table->tid, ERRCODE10, NULL);
-	// philo_check_iterator(table);
 	count = -1;
+	philo_check_iterator(table);
+	while (++count < table->num_philos)
+	{
+		if (pthread_join(tid[count], NULL))
+			error_director(table, tid, ERRCODE20, NULL);
+	}
 	// clean_pthread(table, tid);
 }
 
@@ -55,8 +60,6 @@ void	pthread_routine(t_list *table)
 		do_sleep_cycle(table->times->t_sleep);
 	while (!table->die)
 	{
-		// if (check_eating(table, philo))
-		// 	break ;
 		eat_routine(table, philo);
 		pthread_messenger(table, philo, SSLP);
 		do_sleep_cycle(table->times->t_sleep);
@@ -67,25 +70,21 @@ void	pthread_routine(t_list *table)
 void	pthread_messenger(t_list *table, t_philo *philo, int state)
 {
 	(void) *philo;
-	if (!table->die)
-	{
-		if (pthread_mutex_lock(&table->print))
-			error_director(table, table->tid, ERRCODE10, NULL);
-		printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s",
-			BKGDRED, (get_time() - table->times->t_start), 
-			ENDCLR, WHITE, ENDCLR, BKGDCYAN, philo->id, 
-			ENDCLR, WHITE, ENDCLR);
-		if (state == SEAT)
-			print_philo_eating(table);
-		else if (state == SFRK)
-			print_philo_fork(table);
-		else if (state == SSLP)
-			print_philo_sleeping(table);
-		else if (state == STHK)
-			print_philo_thinking(table);
-		else if (state == SDIE)
-			print_philo_dying(table);
-		if (pthread_mutex_unlock(&table->print))
-			error_director(table, table->tid, ERRCODE10, NULL);
-	}
+	if (pthread_mutex_lock(&table->print))
+		error_director(table, table->tid, ERRCODE10, NULL);
+	printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s",
+		BKGDRED, (get_time() - table->times->t_start), ENDCLR, WHITE, ENDCLR,
+		BKGDCYAN, philo->id, ENDCLR, WHITE, ENDCLR);
+	if (state == SEAT)
+		print_philo_eating(table);
+	else if (state == SFRK)
+		print_philo_fork(table);
+	else if (state == SSLP)
+		print_philo_sleeping(table);
+	else if (state == STHK)
+		print_philo_thinking(table);
+	else if (state == SDIE)
+		print_philo_dying(table);
+	if (pthread_mutex_unlock(&table->print))
+		error_director(table, table->tid, ERRCODE10, NULL);
 }

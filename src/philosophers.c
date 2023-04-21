@@ -6,11 +6,12 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:59:24 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/19 12:35:14 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:11:45 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include "philosophers_utils.h"
 
 int	check_arg(int ac, char **av)
 {
