@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:53:08 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 18:12:11 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:18:23 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,27 @@ void	philo_check_iterator(t_list *table)
 	int	idx;
 
 	idx = 0;
-	while (!table->num_philos)
+	while (!table->die)
 	{
+		if ((get_time() - table->philo[idx].last_eat) >= table->times->t_die)
+		{
+			table->die = 1;
+			if (pthread_mutex_lock(&table->print))
+				error_director(table, table->tid, ERRCODE10, NULL);
+			printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s",
+				BKGDRED, (get_time() - table->times->t_start), ENDCLR, WHITE, ENDCLR,
+				BKGDCYAN, table->philo[idx].id, ENDCLR, WHITE, ENDCLR);
+			print_philo_dying(table);
+			if (pthread_mutex_unlock(&table->print))
+				error_director(table, table->tid, ERRCODE10, NULL);
+		}
 		if (idx == table->pcntr)
 			idx = 0;
 		if (check_eating(table, &table->philo[idx]))
 			++table->ecnt;
 		if (table->ecnt == table->num_philos)
 			break ;
-		if ((get_time() - table->philo[idx].last_eat) <= table->times->t_die)
-		{
-			table->die = 1;
-			pthread_messenger(table, &table->philo[idx], SDIE);
-		}
+		// do_sleep_cycle(50);
 	}
 }
 
