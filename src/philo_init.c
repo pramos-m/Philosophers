@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 18:14:04 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:33:37 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_philo(t_list *table, t_philo *philo)
 {
 	++table->pcntr;
 	philo->num_eats = 0;
-	philo->last_eat = 0;
+	philo->last_eat = table->times->t_start;
 	philo->id = table->pcntr;
 	if (philo->id == 1)
 		philo->fork_l = &table->forks[table->num_philos - 1];

@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/20 20:02:10 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:08:25 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,25 @@
 # define STHK	(int)4
 
 //	Philosophers Messages
+void	pthread_messenger(t_list *table, t_philo *philo, int state);
 void	print_philo_fork(t_list *table);
 void	print_philo_eating(t_list *table);
 void	print_philo_sleeping(t_list *table);
 void	print_philo_thinking(t_list *table);
 void	print_philo_dying(t_list *table);
-void	clean_table(t_list *table);
+
+void	error_director(t_list *table, pthread_t *tid,
+			int errcode, char *strerror);
+void	ft_error_handler(int error, char *strerror);
 void	delete(void **dlt);
 int		destroy_mutex(t_list *table);
+void	clean_table(t_list *table);
 int		clean_pthread(t_list *table, pthread_t *tid);
+
+long long	get_time(void);
+int			ft_atoi(const char	*str);
+void		*ft_calloc(size_t count, size_t size);
+int			ft_isdigit(int c);
+size_t		ft_strlen(const	char	*s);
 
 #endif
