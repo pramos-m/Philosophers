@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 13:29:40 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:33:33 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	init_table(t_list *table, t_times *time)
 	table->times = time;
 	table->pcntr = 0;
 	table->die = 0;
+	table->ecnt = 0;
 	table->philo = ft_calloc(table->num_philos, sizeof(t_philo));
 	if (!table->philo)
 		ft_error_handler(ERRCODE2, NULL);

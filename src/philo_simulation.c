@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 13:36:48 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/22 17:43:11 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	start_simulation(t_list *table)
 {
 	pthread_t	*tid;
-	int		count;
+	int	count;
 
 	count = -1;
 	tid = ft_calloc(table->num_philos, sizeof(pthread_t));
@@ -29,19 +29,14 @@ void	start_simulation(t_list *table)
 	{
 		if (pthread_create(&tid[count], NULL, (void *)pthread_routine,
 				(void *)table))
-			error_director(table, tid, ERRCODE20, NULL);	
+			error_director(table, tid, ERRCODE20, NULL);
 	}
 	table->times->t_start = get_time();
 	if (pthread_mutex_unlock(&table->pcreate))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	count = -1;
 	philo_check_iterator(table);
-	while (++count < table->num_philos)
-	{
-		if (pthread_join(tid[count], NULL))
-			error_director(table, tid, ERRCODE20, NULL);
-	}
-	// clean_pthread(table, tid);
+	clean_pthread(table, table->tid);
 }
 
 void	pthread_routine(t_list *table)

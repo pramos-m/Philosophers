@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 17:08:25 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/22 16:01:23 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_philo_eating(t_list *table);
 void	print_philo_sleeping(t_list *table);
 void	print_philo_thinking(t_list *table);
 void	print_philo_dying(t_list *table);
+void	print_die(t_list *table, t_philo *philo);
 
 void	error_director(t_list *table, pthread_t *tid,
 			int errcode, char *strerror);
