@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 16:01:23 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:46:28 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,32 @@
 # define STHK	(int)4
 
 //	Philosophers Messages
-void	pthread_messenger(t_list *table, t_philo *philo, int state);
-void	print_philo_fork(t_list *table);
-void	print_philo_eating(t_list *table);
-void	print_philo_sleeping(t_list *table);
-void	print_philo_thinking(t_list *table);
-void	print_philo_dying(t_list *table);
-void	print_die(t_list *table, t_philo *philo);
+void		pthread_messenger(t_list *table, t_philo *philo, int state);
+void		print_philo_fork(t_list *table);
+void		print_philo_eating(t_list *table);
+void		print_philo_sleeping(t_list *table);
+void		print_philo_thinking(t_list *table);
+void		print_philo_dying(t_list *table);
+void		print_die(t_list *table, t_philo *philo);
 
-void	error_director(t_list *table, pthread_t *tid,
-			int errcode, char *strerror);
-void	ft_error_handler(int error, char *strerror);
-void	delete(void **dlt);
-int		destroy_mutex(t_list *table);
-void	clean_table(t_list *table);
-int		clean_pthread(t_list *table, pthread_t *tid);
+void		error_director(t_list *table, pthread_t *tid,
+				int errcode, char *strerror);
+void		ft_error_handler(int error, char *strerror);
+void		delete(void **dlt);
+int			destroy_mutex(t_list *table);
+void		clean_table(t_list *table);
+int			clean_pthread(t_list *table, pthread_t *tid);
 
 long long	get_time(void);
 int			ft_atoi(const char	*str);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_isdigit(int c);
 size_t		ft_strlen(const	char	*s);
-
+int			ft_check_isdigit(int params, char **str);
+int			ft_while_is_digit(char *num);
+int			ft_is_int(char *num);
+size_t		ft_strlen(const	char	*s);
+int			ft_check_maxint(long long nbr);
+char		*ft_strchr(const char *s, int c);
+void		*ft_memchr(const void *s, int c, size_t n);
 #endif

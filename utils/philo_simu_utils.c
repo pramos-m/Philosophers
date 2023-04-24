@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:53:08 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 17:37:11 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:08:02 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	philo_check_iterator(t_list *table)
 	do_sleep_cycle(15);
 	while (!table->die && table->ecnt != table->num_philos)
 	{
+		if (table->ecnt == table->num_philos)
+			break ;
 		if ((get_time() - table->philo[idx].last_eat) >= table->times->t_die)
 		{
 			table->die = 1;
@@ -53,8 +55,9 @@ void	philo_check_iterator(t_list *table)
 		}
 		if (idx == table->pcntr)
 			idx = 0;
-		if (check_eating(table, &table->philo[idx]))
-			++table->ecnt;
+		do_sleep_cycle(15);
+		if (table->philo[idx].num_eats == table->times->t_p_eats)
+			table->ecnt++;
 	}
 }
 

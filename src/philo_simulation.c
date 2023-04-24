@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 17:43:11 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:07:10 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	start_simulation(t_list *table)
 {
 	pthread_t	*tid;
-	int	count;
+	int			count;
 
 	count = -1;
 	tid = ft_calloc(table->num_philos, sizeof(pthread_t));
@@ -69,12 +69,15 @@ void	pthread_messenger(t_list *table, t_philo *philo, int state)
 	(void) *philo;
 	if (!table->die)
 	{
+		if (philo->num_eats == table->times->t_p_eats)
+			return ;
 		if (pthread_mutex_lock(&table->print))
 			error_director(table, table->tid, ERRCODE10, NULL);
 		if (!table->die)
 		{
 			printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s",
-				BKGDRED, (get_time() - table->times->t_start), ENDCLR, WHITE, ENDCLR,
+				BKGDRED, (get_time() - table->times->t_start),
+				ENDCLR, WHITE, ENDCLR,
 				BKGDCYAN, philo->id, ENDCLR, WHITE, ENDCLR);
 			if (state == SEAT)
 				print_philo_eating(table);

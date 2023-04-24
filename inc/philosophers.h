@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 17:24:54 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:50:11 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 // Error Messages
 # define ERRMSG		(char *)"\aError"
-# define ERRMSG0	(char *)": Invalid number of arguments!\n"
+# define ERRMSG0	(char *)": Invalid arguments!\n"
 # define ERRMSG1	(char *)": Arguments given are invalid!\n"
 # define ERRMSG2	(char *)": There was an error while allocating memory!\n"
 # define ERRMSG3	(char *)": There was an error while creating a mutex!\n"

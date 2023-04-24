@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:59:24 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 16:42:17 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:50:55 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	check_arg(int ac, char **av)
 	int	i;
 
 	i = 0;
-	num = (int*)malloc((ac-1) * sizeof(int));
+	num = (int *) malloc((ac - 1) * sizeof(int));
 	if (!av[1] || !av[2] || !av[3] || !av[4])
+		return (-1);
+	if (ft_check_isdigit(ac, av))
 		return (-1);
 	while (++i < ac)
 	{

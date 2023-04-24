@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:30:47 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/22 16:49:48 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:33:01 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ int	clean_pthread(t_list *table, pthread_t *tid)
 
 void	ft_error_handler(int error, char *strerror)
 {
-	if (!strerror && error)
+	if (error > -1 && !strerror)
 	{
+		write(STDERR_FILENO, ERRMSG, ft_strlen(ERRMSG));
 		if (error == ERRCODE0)
 			write(STDERR_FILENO, ERRMSG0, ft_strlen(ERRMSG0));
 		else if (error == ERRCODE1)
@@ -87,10 +88,4 @@ void	ft_error_handler(int error, char *strerror)
 	else if ((!error) && (strerror))
 		write(STDERR_FILENO, strerror, ft_strlen(strerror));
 	exit(EXIT_FAILURE);
-}
-
-void	delete(void **dlt)
-{
-	free(*dlt);
-	*dlt = NULL;
 }

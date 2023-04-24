@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:49:55 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/21 18:13:03 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:46:27 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
 long long	get_time(void)
 {
 	struct timeval	t_time;
@@ -69,16 +62,4 @@ long long	get_time(void)
 	gettimeofday(&t_time, 0);
 	tme = (t_time.tv_sec * 1000) + (t_time.tv_usec / 1000);
 	return (tme);
-}
-
-size_t	ft_strlen(const	char	*s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
 }
