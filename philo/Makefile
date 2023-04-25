@@ -6,15 +6,14 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/24 17:27:30 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/04/25 13:32:37 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #-----------------RULES------------------#
 
-NAME = philosophers
-
+NAME = philo
 #----------------COMANDS-----------------#
 
 CFLAGS = -Wall -Werror -Wextra -W -O3 -Ofast
@@ -37,12 +36,13 @@ INCLUDE = -I$(INC_DIR) -Ibonus/inc/
 SRC_FLS = philosophers.c \
 			philo_init.c \
 			philo_simulation.c \
+			philo_eating.c \
+			philo_errors.c
 
 UTL_FLS = philo_utils.c \
 			philo_print_utils.c \
-			philo_errors_utils.c \
-			philo_simu_utils.c \
-			philo_extra_utils.c
+			philo_extra_utils.c \
+			philo_lib_utils.c
 
 SRCS += $(addprefix $(SRC_DIR), $(SRC_FLS))
 SRCS += $(addprefix $(UTILS), $(UTL_FLS))
@@ -66,7 +66,7 @@ $(NAME)::
 	@echo "nothing to be done philosophers"
 
 clean:
-	@$(RM) -rf $(OBJ_DIR)
+	@$(RM) -rf $(OBJ_DIR) $(NAME)
 	@echo "clean done"
 
 fclean:

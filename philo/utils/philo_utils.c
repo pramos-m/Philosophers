@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:49:55 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/24 17:46:27 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:24:48 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,42 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-long long	get_time(void)
+int	ft_check_isdigit(int params, char **str)
 {
-	struct timeval	t_time;
-	long long		tme;
+	int			i;
+	long long	tmpnbr;
 
-	gettimeofday(&t_time, 0);
-	tme = (t_time.tv_sec * 1000) + (t_time.tv_usec / 1000);
-	return (tme);
+	i = 0;
+	while (++i < params)
+	{
+		if (!ft_while_is_digit(str[i]) || !ft_is_int(str[i]))
+			return (1);
+		tmpnbr = ft_atoi(str[i]);
+		if (!ft_check_maxint(tmpnbr))
+			return (1);
+	}
+	return (0);
+}
+
+int	ft_while_is_digit(char *num)
+{
+	int	i;
+
+	i = 0;
+	if ((num[0] == '-' || num[0] == '+') && num[1])
+		i++;
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]))
+			return (0);
+			i++;
+	}
+	return (1);
+}
+
+int	ft_check_maxint(long long nbr)
+{
+	if (nbr > INT_MAX || nbr < INT_MIN)
+		return (0);
+	return (1);
 }

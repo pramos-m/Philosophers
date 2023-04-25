@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_simu_utils.c                                 :+:      :+:    :+:   */
+/*   philo_eating.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 17:53:08 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/24 11:08:02 by pramos-m         ###   ########.fr       */
+/*   Created: 2023/04/25 13:17:48 by pramos-m          #+#    #+#             */
+/*   Updated: 2023/04/25 13:18:54 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 #include "philosophers_utils.h"
-
-void	do_sleep_cycle(long long time)
-{
-	time = get_time() + time;
-	while (time > get_time())
-		usleep(200);
-}
 
 void	eat_routine(t_list *table, t_philo *philo)
 {
@@ -28,8 +21,8 @@ void	eat_routine(t_list *table, t_philo *philo)
 	if (pthread_mutex_lock(philo->fork_r))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	pthread_messenger(table, philo, SFRK);
-	philo->last_eat = get_time();
 	pthread_messenger(table, philo, SEAT);
+	philo->last_eat = get_time();
 	do_sleep_cycle(table->times->t_eat);
 	if (pthread_mutex_unlock(philo->fork_l))
 		error_director(table, table->tid, ERRCODE10, NULL);
@@ -43,7 +36,7 @@ void	philo_check_iterator(t_list *table)
 	int	idx;
 
 	idx = 0;
-	do_sleep_cycle(15);
+	do_sleep_cycle(2);
 	while (!table->die && table->ecnt != table->num_philos)
 	{
 		if (table->ecnt == table->num_philos)
@@ -53,11 +46,13 @@ void	philo_check_iterator(t_list *table)
 			table->die = 1;
 			print_die(table, &table->philo[idx]);
 		}
+		if (table->philo[idx].num_eats == table->times->t_p_eats)
+		{
+			do_sleep_cycle(5);
+			table->ecnt++;
+		}	
 		if (idx == table->pcntr)
 			idx = 0;
-		do_sleep_cycle(15);
-		if (table->philo[idx].num_eats == table->times->t_p_eats)
-			table->ecnt++;
 	}
 }
 
@@ -82,4 +77,11 @@ int	check_eating(t_list *table, t_philo *philo)
 	if (philo->num_eats == table->times->t_p_eats)
 		return (1);
 	return (0);
+}
+
+void	do_sleep_cycle(long long time)
+{
+	time = get_time() + time;
+	while (time > get_time())
+		usleep(200);
 }

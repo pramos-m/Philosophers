@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/24 17:50:11 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:23:49 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,14 @@ void		eat_routine(t_list *table, t_philo *philo);
 int			check_eating(t_list *table, t_philo *philo);
 void		philo_check_iterator(t_list *table);
 void		do_sleep_cycle(long long time);
+void		print_die(t_list *table, t_philo *philo);
+
+void		error_director(t_list *table, pthread_t *tid,
+				int errcode, char *strerror);
+void		ft_error_handler(int error, char *strerror);
+void		delete(void **dlt);
+int			destroy_mutex(t_list *table);
+void		clean_table(t_list *table);
+int			clean_pthread(t_list *table, pthread_t *tid);
 
 #endif
