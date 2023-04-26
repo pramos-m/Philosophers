@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/25 16:06:56 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:32:39 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	start_simulation(t_list *table)
 		error_director(table, table->tid, ERRCODE10, NULL);
 	count = -1;
 	philo_check_iterator(table);
-	clean_pthread(table, table->tid);
+	while (++count < table->num_philos)
+		if (pthread_join(tid[count], NULL))
+			error_director(table, tid, ERRCODE20, NULL);
+	// clean_pthread(table, table->tid);
 }
 
 void	pthread_routine(t_list *table)
