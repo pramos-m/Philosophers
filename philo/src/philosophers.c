@@ -54,5 +54,6 @@ int	main(int ac, char **av)
 	init_table(table, &times);
 	init_mutex(table);
 	start_simulation(table);
+	clean_table(table);
 	return (0);
 }

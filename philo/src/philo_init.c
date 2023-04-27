@@ -68,7 +68,10 @@ void	init_table(t_list *table, t_times *time)
 		ft_error_handler(ERRCODE2, NULL);
 	table->forks = ft_calloc(table->num_philos, sizeof(pthread_mutex_t));
 	if (!table->forks)
+	{
+		delete((void **)&table->forks);
 		ft_error_handler(ERRCODE2, NULL);
+	}
 }
 
 void	init_philo(t_list *table, t_philo *philo)
