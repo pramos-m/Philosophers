@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/25 13:23:49 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:08:01 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void		init_mutex(t_list *table);
 void		init_philo(t_list *table, t_philo *philo);
 void		start_simulation(t_list *table);
 void		pthread_routine(t_list *table);
-void		eat_routine(t_list *table, t_philo *philo);
+int			eat_routine(t_list *table, t_philo *philo);
 int			check_eating(t_list *table, t_philo *philo);
 void		philo_check_iterator(t_list *table);
 void		do_sleep_cycle(long long time);

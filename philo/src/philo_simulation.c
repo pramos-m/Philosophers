@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/26 19:11:21 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:08:37 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ void	pthread_routine(t_list *table)
 	while (!table->die)
 	{
 		if (philo->num_eats == table->times->t_p_eats)
-		{
-			// printf("id:%i\n", philo->id);
 			break ;
-		}
-		eat_routine(table, philo);
+		if (eat_routine(table, philo) == -1)
+			break ;
 		pthread_messenger(table, philo, SSLP);
 		do_sleep_cycle(table->times->t_sleep);
 		pthread_messenger(table, philo, STHK);
