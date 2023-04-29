@@ -39,7 +39,6 @@ void	start_simulation(t_list *table)
 	while (++count < table->num_philos)
 		if (pthread_join(tid[count], NULL))
 			error_director(table, tid, ERRCODE20, NULL);
-	// clean_pthread(table, table->tid);
 }
 
 void	pthread_routine(t_list *table)

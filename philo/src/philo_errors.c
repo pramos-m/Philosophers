@@ -16,10 +16,8 @@
 void	error_director(t_list *table, pthread_t *tid,
 		int errcode, char *strerror)
 {
-	clean_pthread(table, tid);
+	(void) *tid;
 	clean_table(table);
-	if (destroy_mutex(table))
-		ft_error_handler(ERRCODE4, NULL);
 	ft_error_handler(errcode, strerror);
 }
 
@@ -29,35 +27,16 @@ void	clean_table(t_list *table)
 		delete((void **)&table->forks);
 	if (table->philo)
 		delete((void **)&table->philo);
+	if (destroy_mutex(table))
+		ft_error_handler(ERRCODE4, NULL);
 }
 
 int	destroy_mutex(t_list *table)
 {
-	ssize_t	idx;
-
-	idx = -1;
-	while (++idx < table->num_philos)
-		if (pthread_mutex_destroy(&table->forks[idx]))
-			ft_error_handler(ERRCODE4, NULL);
 	if (pthread_mutex_destroy(&table->print))
 		ft_error_handler(ERRCODE4, NULL);
 	if (pthread_mutex_destroy(&table->pcreate))
 		ft_error_handler(ERRCODE4, NULL);
-	return (1);
-}
-
-int	clean_pthread(t_list *table, pthread_t *tid)
-{
-	ssize_t	idx;
-
-	if (!tid)
-		return (0);
-	idx = -1;
-	while (++idx < table->num_philos)
-	{
-		if (pthread_detach(tid[idx]))
-			ft_error_handler(ERRCODE6, NULL);
-	}
 	return (1);
 }
 

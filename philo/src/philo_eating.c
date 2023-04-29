@@ -85,6 +85,6 @@ int	check_eating(t_list *table, t_philo *philo)
 void	do_sleep_cycle(long long time)
 {
 	time = get_time() + time;
-	while (time > get_time())
-		usleep(200);
+	while (time >= get_time())
+		usleep(100);
 }

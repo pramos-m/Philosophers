@@ -114,6 +114,5 @@ void		ft_error_handler(int error, char *strerror);
 void		delete(void **dlt);
 int			destroy_mutex(t_list *table);
 void		clean_table(t_list *table);
-int			clean_pthread(t_list *table, pthread_t *tid);
 
 #endif

@@ -18,6 +18,8 @@ t_times	init_times(char **av, t_list *table)
 	t_times	times;
 
 	table->num_philos = ft_atoi(av[1]);
+	if (ft_atoi(av[2]) == 0)
+		ft_error_handler(ERRCODE1, NULL);
 	times.t_die = ft_atoi(av[2]);
 	times.t_eat = ft_atoi(av[3]);
 	times.t_sleep = ft_atoi(av[4]);
