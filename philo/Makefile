@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/04/25 13:32:37 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/05/01 11:36:22 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ NAME = philo
 #----------------COMANDS-----------------#
 
 CFLAGS = -Wall -Werror -Wextra -W -O3 -Ofast
-XFLAGS = -fsanitize=address -g3
 RM = rm -rf
 MD = mkdir -p
 CP = cp -f
@@ -60,7 +59,7 @@ all:
 	@$(MAKE) $(NAME)
 
 $(NAME):: $(OBJS)
-	$(CC) $(CFLAGS) $(XFLAGS) $(OBJS) -o philo
+	$(CC) $(CFLAGS) $(OBJS) -o philo
 
 $(NAME)::
 	@echo "nothing to be done philosophers"

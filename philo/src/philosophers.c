@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:59:24 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/28 16:17:04 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:10:39 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int	main(int ac, char **av)
 	init_mutex(table);
 	start_simulation(table);
 	clean_table(table);
+	delete((void **)&table);
 	return (0);
 }

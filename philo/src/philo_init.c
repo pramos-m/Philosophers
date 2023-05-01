@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/25 16:05:07 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:26:29 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_times	init_times(char **av, t_list *table)
 		times.t_p_eats = ft_atoi(av[5]);
 	else
 		times.t_p_eats = -1;
-	times.t_start = get_time();
+	times.t_start = get_time() + table->num_philos * 10;
 	return (times);
 }
 

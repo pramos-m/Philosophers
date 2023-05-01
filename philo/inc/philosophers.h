@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:11:52 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/28 13:08:01 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:42:14 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_list	t_list;
  *		t_die	-> time to die
  *		t_times	-> how many times are required to eat
 */
+
 typedef struct s_times
 {
 	long long	t_start;
@@ -95,19 +96,25 @@ typedef struct s_list
 	t_times			*times;
 }	t_list;
 
+// Philosophers init
 int			check_arg(int ac, char **av);
 t_times		init_times(char **av, t_list *table);
 void		init_table(t_list *table, t_times *time);
 void		init_mutex(t_list *table);
 void		init_philo(t_list *table, t_philo *philo);
+
+// Philosophers simulation
 void		start_simulation(t_list *table);
 void		pthread_routine(t_list *table);
+void		philo_check_iterator(t_list *table);
 int			eat_routine(t_list *table, t_philo *philo);
 int			check_eating(t_list *table, t_philo *philo);
-void		philo_check_iterator(t_list *table);
-void		do_sleep_cycle(long long time);
-void		print_die(t_list *table, t_philo *philo);
 
+// Philosophers time
+void		do_sleep_cycle(long long time);
+long long	get_time(void);
+
+// Philosophers errors && clean
 void		error_director(t_list *table, pthread_t *tid,
 				int errcode, char *strerror);
 void		ft_error_handler(int error, char *strerror);

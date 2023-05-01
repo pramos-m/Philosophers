@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:05:44 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/25 13:22:49 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:43:38 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		print_philo_thinking(t_list *table);
 void		print_philo_dying(t_list *table);
 void		print_die(t_list *table, t_philo *philo);
 
-long long	get_time(void);
+//	Philosophers Parsing
 int			ft_atoi(const char	*str);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_isdigit(int c);

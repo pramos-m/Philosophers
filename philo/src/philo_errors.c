@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:12:37 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/04/28 16:17:49 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:50:46 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,27 @@ void	error_director(t_list *table, pthread_t *tid,
 
 void	clean_table(t_list *table)
 {
+	if (destroy_mutex(table))
+		ft_error_handler(ERRCODE4, NULL);
 	if (table->forks)
 		delete((void **)&table->forks);
 	if (table->philo)
 		delete((void **)&table->philo);
-	if (destroy_mutex(table))
-		ft_error_handler(ERRCODE4, NULL);
 }
 
 int	destroy_mutex(t_list *table)
 {
+	int	idx;
+
+	idx = -1;
 	if (pthread_mutex_destroy(&table->print))
 		ft_error_handler(ERRCODE4, NULL);
 	if (pthread_mutex_destroy(&table->pcreate))
 		ft_error_handler(ERRCODE4, NULL);
-	return (1);
+	while (++idx < table->num_philos)
+		if (pthread_mutex_destroy(&table->forks[idx]))
+			ft_error_handler(ERRCODE4, NULL);
+	return (0);
 }
 
 void	ft_error_handler(int error, char *strerror)
