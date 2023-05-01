@@ -6,7 +6,7 @@
 #    By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 19:53:14 by pramos-m          #+#    #+#              #
-#    Updated: 2023/05/01 11:36:22 by pramos-m         ###   ########.fr        #
+#    Updated: 2023/05/01 15:07:51 by pramos-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,23 +43,26 @@ UTL_FLS = philo_utils.c \
 			philo_extra_utils.c \
 			philo_lib_utils.c
 
+INC_FLS = philosophers philosophers_utils
+
 SRCS += $(addprefix $(SRC_DIR), $(SRC_FLS))
 SRCS += $(addprefix $(UTILS), $(UTL_FLS))
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:%.c=%.o))
 DEPS = $(OBJS:%.o=%.d)
+INCS = $(addprefix $(INC_DIR), $(addsuffix .h, $(INC_FLS)))
 
 #------------------RULES-------------------#
 
-$(OBJ_DIR)%.o: %.c
+$(OBJ_DIR)%.o: %.c $(INCS)
 	$(MD) $(dir $@)
-	$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) -fsanitize=address -MMD $(INCLUDE) -c $< -o $@
 
 all:
 	@$(MAKE) $(NAME)
 
 $(NAME):: $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o philo
+	$(CC) $(CFLAGS) -fsanitize=address $(OBJS) -o philo
 
 $(NAME)::
 	@echo "nothing to be done philosophers"

@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:17:48 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/05/01 11:17:54 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:33:23 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	eat_routine(t_list *table, t_philo *philo)
 	pthread_messenger(table, philo, SFRK);
 	if (philo->fork_l == philo->fork_r)
 		return (-1);
-	if (pthread_mutex_lock(philo->fork_r))
+	if ((pthread_mutex_lock(philo->fork_r)))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	pthread_messenger(table, philo, SFRK);
 	pthread_messenger(table, philo, SEAT);
@@ -48,6 +48,7 @@ void	philo_check_iterator(t_list *table)
 		{
 			table->die = 1;
 			print_die(table, &table->philo[idx]);
+			continue ;
 		}
 		if (table->philo[idx].num_eats == table->times->t_p_eats)
 		{

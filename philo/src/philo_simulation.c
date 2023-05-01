@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:40:42 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/05/01 11:29:29 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/01 12:37:48 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	pthread_routine(t_list *table)
 {
 	t_philo	*philo;
 
-	if (pthread_mutex_lock(&table->pcreate))
-		error_director(table, table->tid, ERRCODE10, NULL);
-	if (pthread_mutex_unlock(&table->pcreate))
-		error_director(table, table->tid, ERRCODE10, NULL);
 	if (pthread_mutex_lock(&table->print))
 		error_director(table, table->tid, ERRCODE10, NULL);
 	philo = &table->philo[table->pcntr];
@@ -62,7 +58,11 @@ void	pthread_routine(t_list *table)
 		if (philo->num_eats == table->times->t_p_eats)
 			break ;
 		if (eat_routine(table, philo) == -1)
-			break ;
+		{
+			if (pthread_mutex_unlock(philo->fork_l))
+				error_director(table, table->tid, ERRCODE10, NULL);
+			return ;
+		}
 		pthread_messenger(table, philo, SSLP);
 		do_sleep_cycle(table->times->t_sleep);
 		pthread_messenger(table, philo, STHK);
