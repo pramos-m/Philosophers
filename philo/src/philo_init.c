@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 16:14:53 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/05/01 11:59:23 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:53:35 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_times	init_times(char **av, t_list *table)
 		times.t_p_eats = ft_atoi(av[5]);
 	else
 		times.t_p_eats = -1;
-	times.t_start = get_time() + table->num_philos * 10;
+	times.t_start = get_time();
 	return (times);
 }
 
@@ -37,26 +37,12 @@ void	init_mutex(t_list *table)
 
 	idx = -1;
 	while (++idx < table->num_philos)
-	{
 		if (pthread_mutex_init(&table->forks[idx], NULL))
-		{
-			if (pthread_mutex_destroy(table->forks))
-				error_director(table, NULL, ERRCODE4, NULL);
 			error_director(table, NULL, ERRCODE10, NULL);
-		}
-	}
 	if (pthread_mutex_init(&table->print, NULL))
-	{
-		if (pthread_mutex_destroy(&table->print))
-			error_director(table, NULL, ERRCODE4, NULL);
 		error_director(table, NULL, ERRCODE10, NULL);
-	}
 	if (pthread_mutex_init(&table->pcreate, NULL))
-	{
-		if (pthread_mutex_destroy(&table->print))
-			error_director(table, NULL, ERRCODE4, NULL);
 		error_director(table, NULL, ERRCODE10, NULL);
-	}
 }
 
 void	init_table(t_list *table, t_times *time)
