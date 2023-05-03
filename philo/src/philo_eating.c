@@ -6,7 +6,7 @@
 /*   By: pramos-m <pramos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:17:48 by pramos-m          #+#    #+#             */
-/*   Updated: 2023/05/03 12:35:01 by pramos-m         ###   ########.fr       */
+/*   Updated: 2023/05/03 12:54:05 by pramos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	philo_check_iterator(t_list *table)
 
 void	print_die(t_list *table, t_philo *philo)
 {
-	// if (pthread_mutex_lock(&table->print))
-	// 	error_director(table, table->tid, ERRCODE10, NULL);
+	if (pthread_mutex_lock(&table->print))
+		error_director(table, table->tid, ERRCODE10, NULL);
 		if (printf("\t%s[ %06lld ]%s%s |%s %s[ %05d ]%s%s | %s", \
 	BKGDRED, (get_time() - table->times->t_start), \
 	ENDCLR, WHITE, ENDCLR, BKGDCYAN, philo->id, \
